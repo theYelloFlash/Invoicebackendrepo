@@ -150,6 +150,34 @@ app.post('/getpdf', async (req, res) => {
         console.log(e);
     }
 });
+const credentials_arr = [
+    {
+        userName: "senakshay71@gmail.com",
+        password: "1234"
+    },
+    {
+        userName: "vanya",
+        password: "1234"
+    },
+    {
+        userName: "lennister",
+        password: "1234"
+    }
+];
+app.post('/login-details', async (req, res) => {
+    let userDetails = {
+        userName: req.body.username,
+        password: req.body.password
+    };
+    let result = false;
+    let userName = userDetails.userName;
+    credentials_arr.forEach((element, index) => {
+        if (userName === element.userName && userDetails.password === element.password) {
+            result = true;
+        }
+    });
+    res.json(result);
+});
 app.post('/send-email', async (req, res) => {
     console.log("Email api got hit");
     const cEmail = req.body.email;

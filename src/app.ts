@@ -186,6 +186,42 @@ app.post('/getpdf', async (req: Request, res: Response) => {
     }
 })
 
+const credentials_arr: any[] = [
+    {
+        userName: "senakshay71@gmail.com",
+        password: "1234"
+    },
+    {
+        userName: "vanya",
+        password: "1234"
+    },
+    {
+        userName: "lennister",
+        password: "1234"
+    }
+]
+
+
+app.post('/login-details', async (req: Request, res: Response) => {
+    let userDetails = {
+        userName: req.body.username,
+        password: req.body.password
+    }
+
+    let result = false;
+
+    let userName: String = userDetails.userName;
+
+    credentials_arr.forEach((element, index) => {
+        if (userName === element.userName && userDetails.password === element.password) {
+            result = true;
+        }
+    });
+
+    res.json(result);
+})
+
+
 
 
 app.post('/send-email', async (req: Request, res: Response) => {
@@ -221,9 +257,9 @@ app.post('/send-email', async (req: Request, res: Response) => {
         subject: 'Invoice of the transaction',
         text: 'This is a plain text sample mail testing',
         html: req.body.htmlContent,
-        attachments : [
+        attachments: [
             {
-                filename: `output_${ Date.now() }.pdf`,
+                filename: `output_${Date.now()}.pdf`,
                 path: outputPath,
                 contentType: 'application/pdf'
             }
