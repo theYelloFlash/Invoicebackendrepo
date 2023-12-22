@@ -218,7 +218,7 @@ app.post('/login-details', async (req: Request, res: Response) => {
         }
     });
 
-    res.json(result);
+    res.send({result});
 })
 
 

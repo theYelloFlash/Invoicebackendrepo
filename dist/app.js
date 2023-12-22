@@ -176,7 +176,7 @@ app.post('/login-details', async (req, res) => {
             result = true;
         }
     });
-    res.json(result);
+    res.send({ result });
 });
 app.post('/send-email', async (req, res) => {
     console.log("Email api got hit");
